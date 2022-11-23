@@ -3,7 +3,14 @@ const members = [
   "dog",
   "fox",
   "raccoon",
-  "seal"
+  "seal",
+  "bambi",
+  "bear",
+  "lion",
+  "panda",
+  "elephant",
+  "penguin",
+  "wolf",
 ];
 
 chrome.runtime.onMessage.addListener(() => {
