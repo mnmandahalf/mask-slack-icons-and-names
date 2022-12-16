@@ -37,9 +37,11 @@ chrome.runtime.onMessage.addListener(() => {
       }
       nameElem.textContent = replaceName;
 
-      const imgElem = item.querySelector("img");
-      imgElem.src = chrome.runtime.getURL(`images/${replaceName}.svg`);
-      imgElem.srcset = chrome.runtime.getURL(`images/${replaceName}.svg`);
+      const imgs = item.querySelectorAll(".c-base_icon");
+      imgs.forEach((imgElem) => {
+        imgElem.src = chrome.runtime.getURL(`images/${replaceName}.svg`);
+        imgElem.srcset = chrome.runtime.getURL(`images/${replaceName}.svg`);
+      });
     });
   };
 
