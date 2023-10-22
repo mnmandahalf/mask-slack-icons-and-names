@@ -1,6 +1,8 @@
-# mask-x-icons-and-names
+# mask-slack-icons-and-names
 
-Mask icons and names on the X (Twitter) message;  It makes X captures easy to use in blogs, articles, and social media.
+Available on [Chrome Web Store](https://chrome.google.com/webstore/detail/slack-icons-names-masking/opbaainihmjbpbkaebchgpheoihkcefn).
+
+Mask icons and names on the Slack message;  It makes Slack captures easy to use in blogs, articles, and social media.
 
 You can replace icons and names by dummy data, and you can also blur existing icons and names.
 
