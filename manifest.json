@@ -1,12 +1,12 @@
 {
-	"name": "Slack icons & names masking",
-	"version": "0.2.0",
+	"name": "X (Twitter) icons & names masking",
+	"version": "0.1.0",
 	"manifest_version": 3,
-	"description": "Mask icons and names on your Slack.",
+	"description": "Mask icons and names on your X (Twitter).",
 	"content_scripts": [
 		{
 			"matches": [
-				"https://app.slack.com/*"
+				"https://twitter.com/*"
 			],
 			"run_at": "document_idle",
 			"js": [
@@ -22,7 +22,7 @@
 			"resources": [
 				"/images/*"
 			],
-			"matches": [ "https://app.slack.com/*" ]
+			"matches": [ "https://twitter.com/*" ]
 		}
 	],
 	"icons": {

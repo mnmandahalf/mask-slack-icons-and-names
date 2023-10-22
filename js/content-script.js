@@ -22,11 +22,10 @@ chrome.runtime.onMessage.addListener((message) => {
     const replaceNames = [...members];
     const mem = {};
     list.forEach((item) => {
-      const nameElem = item.querySelector(".c-message__sender_button");
-      if (nameElem == null) {
-        return;
-      }
-
+      const nameContainer = item.querySelector('[data-testid="User-Name"]');
+      const names = nameContainer.querySelectorAll('span');
+      const nameElem = names[0];
+      const idElem = names[3];
       let replaceName;
       const name = nameElem.textContent;
       if(mem[name] != null) {
@@ -36,25 +35,24 @@ chrome.runtime.onMessage.addListener((message) => {
         mem[name] = replaceName;
       }
       nameElem.textContent = replaceName;
-
-      const imgs = item.querySelectorAll(".c-base_icon");
-      imgs.forEach((imgElem) => {
-        imgElem.src = chrome.runtime.getURL(`images/${replaceName}.svg`);
-        imgElem.srcset = chrome.runtime.getURL(`images/${replaceName}.svg`);
-      });
+      idElem.textContent = `@${replaceName}`;
+      const imgContainer = item.querySelector('[data-testid="Tweet-User-Avatar"]');
+      const imgElem = imgContainer.querySelector('img');
+      imgElem.src = chrome.runtime.getURL(`images/${replaceName}.svg`);
+      imgElem.srcset = chrome.runtime.getURL(`images/${replaceName}.svg`);
+      imgElem.style.opacity = "1";
     });
   }
 
   const blur = (list) => {
     const blurCSS = "-ms-filter: blur(4px); filter: blur(4px);"
     list.forEach((item) => {
-      const nameElem = item.querySelector(".c-message__sender_button");
-      if (nameElem == null) {
-        return;
-      }
-      nameElem.style.cssText = blurCSS;
+      const names = item.querySelectorAll('[data-testid="User-Name"]');
+      names.forEach((nameElem) => {
+        nameElem.style.cssText = blurCSS;
+      });
 
-      const imgs = item.querySelectorAll(".c-base_icon");
+      const imgs = item.querySelectorAll('[data-testid="Tweet-User-Avatar"]');
       imgs.forEach((imgElem) => {
         imgElem.style.cssText = blurCSS;
       });
@@ -62,7 +60,7 @@ chrome.runtime.onMessage.addListener((message) => {
   };
 
   const findLoop = (message) => {
-      const list = document.querySelectorAll(".c-message_kit__message");
+      const list = document.querySelectorAll('[data-testid="tweet"]');
       if (list.length > 0) {
           message === "triggered" ? mask(list) : blur(list);
           return;
